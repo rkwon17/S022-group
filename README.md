@@ -1,6 +1,4 @@
 # S022-group
-Group assignments for S022
-
 
 ##Group assignments for S022
 
