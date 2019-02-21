@@ -12,9 +12,11 @@ R assignments by Rachel Kwon, Erin Mahoney, Kevin Nazario
 
 ## Authors
 
-**Rachel Kwon** 
-**Erin Mahoney**
-**Kevin Nazario**
+*Rachel Kwon*
+
+*Erin Mahoney*
+
+*Kevin Nazario*
 
 
 ## Acknowledgments
