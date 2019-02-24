@@ -136,4 +136,14 @@ ggplot(coll_dat, aes(fill = mean_ed_spend)) +
   scale_fill_viridis(option = "A") # this is the color palette; options go from A through E
 
 #regression models - step 3
-
+#regress for support of ed spending on total spending
+mod <- lm(total_spending ~ ed_spend_num,cces2)
+#regress with other predictors
+mod2 <- lm(total_spending ~ faminc_num + employ + gender + educ + race + child18,cces2)
+#added ed spending back into model
+mod3 <- lm(total_spending ~ed_spend + faminc_num + employ + gender + educ + race + child18,cces2)
+#introduce interaction between family income and party
+mod4 <- lm(total_spending ~ed_spend + faminc_num + employ + gender + educ + race + child18 + faminc_num:party,cces2)
+#taxonomy table
+htmlreg(list(mod,mod2,mod3,mod4), file =
+          's022figures/regression_table.html')
