@@ -5,8 +5,9 @@
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 #### Set up ####
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
+# Load libraries
 library(magrittr)
-library(texreg)
+library(texreg)   
 library(stringr)
 library(dplyr)
 library(ggplot2)
