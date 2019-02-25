@@ -94,7 +94,10 @@ census_dat <- get_acs(geography = "state", variables = c('B05006_001'), geometry
 plot_income_spend <- ggplot(cces2, mapping = aes(x = faminc_num, y = ed_spend_num, color = party)) + geom_smooth(se = FALSE) + ylim(-2, 2) + xlim(0, 16) + guides(fill = guide_legend(nrow = 10))
 
 #visualization 2: scatter per pupil expenditure (total_spending) on mean_edu_spend_num, color by party
-plot_spending_opinions <- ggplot(coll_dat, mapping = aes(x = mean_per_pupil, y = mean_ed_spend, color = prop_dem)) + geom_point()
+plot_spending_opinions <-ggplot(coll_dat, aes(x=mean_per_pupil, y = mean_ed_spend))+
+  geom_point(data=subset(coll_dat, prop_dem > prop_rep), color = 'blue', aes(alpha = prop_dem))+
+  geom_point(data=subset(coll_dat, prop_dem < prop_rep), color='red', aes(alpha = prop_rep))
+
 
 #visualization 3: histogram of spending, color by party leaning
 coll_dat_demstates <- subset(coll_dat, prop_dem > prop_rep)
