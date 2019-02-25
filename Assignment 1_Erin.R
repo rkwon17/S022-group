@@ -19,8 +19,6 @@ rm(list = ls())
 
 #### load in CCES ####
 load(url('https://www.dropbox.com/s/hghuiyjec1jggwd/cces2.RData?dl=1'))
-#cces <- x
-#rm('x')
 
 names(cces) %<>% tolower()
 
