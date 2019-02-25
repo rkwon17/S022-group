@@ -104,8 +104,8 @@ coll_dat_demstates <- subset(coll_dat, prop_dem > prop_rep)
 coll_dat_repstates <- subset(coll_dat, prop_rep > prop_dem)
 
 plot_partyspend <- ggplot(coll_dat, mapping = aes(x = mean_per_pupil)) + 
-  geom_freqpoly(coll_dat_demstates, mapping = aes(x = mean_per_pupil, color = "blue")) + 
-  geom_freqpoly(coll_dat_repstates, mapping = aes(x = mean_per_pupil, color = "red"))
+  geom_freqpoly(coll_dat_demstates, mapping = aes(x = mean_per_pupil), color = "blue") + 
+  geom_freqpoly(coll_dat_repstates, mapping = aes(x = mean_per_pupil), color = "red")
 
 #visualization 4: map of the US, color states by mean edu spend 
 census_dat %<>% dplyr::rename(state = NAME)
