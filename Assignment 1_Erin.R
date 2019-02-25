@@ -119,21 +119,23 @@ grid.arrange(plot_income_spend, plot_spending_opinions, plot_partyspend, plot_ma
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 #### Item 3 ####
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
+cces2$total_spending_10k <- cces2$total_spending/10000
 
 #model 1
-model1 <- lm(ed_spend_num ~ total_spending, data = cces2)
+model1 <- lm(ed_spend_num ~ total_spending_10k, data = cces2)
 
 #model 2
 model2 <- lm(ed_spend_num ~ faminc_num + employ + gender + educ + race + child18, data = cces2)
 
 #model 3
-model3 <- lm(ed_spend_num ~ faminc_num + employ + gender + educ + race + child18 + total_spending, data = cces2)
+model3 <- lm(ed_spend_num ~ faminc_num + employ + gender + educ + race + child18 + total_spending_10k, data = cces2)
 
 #model 4
-model4 <- lm(ed_spend_num ~ faminc_num * party + employ + gender + educ + race + child18 + total_spending, data = cces2)
++model4 <- lm(ed_spend_num ~ faminc_num * party + employ + gender + educ + race + child18 + total_spending_10k, data = cces2)
 
 screenreg(list(model1, model2, model3, model4))
-#htmlreg(list(model1, model2, model3, model4), file = 'taxonomy_table.html')
+setwd('c:/Users/Erin/Documents/Harvard/S022 Statistical Computing and Data Science/Assignments/')
+htmlreg(list(model1, model2, model3, model4), file = 'taxonomy_table.html')
 
 
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
