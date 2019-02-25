@@ -147,3 +147,13 @@ mod4 <- lm(total_spending ~ed_spend + faminc_num + employ + gender + educ + race
 #taxonomy table
 htmlreg(list(mod,mod2,mod3,mod4), file =
           's022figures/regression_table.html')
+#step4
+#stimulation 1
+#set seed - figure out how to do
+# simulation 2
+# step 1: randomly sample 3 states
+# this code creates a vector containing 3 randomly selected states
+sampled_states <- sample(unique(cces$state), size = 3)  
+# step 2: select all individuals from those 3 states
+# this code creates a new dataframe keeping only people from those 
+sampled_data <- cces[cces$cl_state %in% sampled_states] 
