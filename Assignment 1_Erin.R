@@ -178,7 +178,7 @@ cat("std error in sim 1: ", sd(slope_ests_sim1), "\nstd error in sim 2: ", sd(sl
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 coll_dat2 <- cces2 %>% group_by(lookupzip) %>% summarise(mean_ed_spend = mean(ed_spend_num, na.rm = TRUE))
 
-census_dat_zc <- get_acs(geography = "zcta", variables = c('B06011_001'), geometry = FALSE, output = 'wide')
+census_dat_zc <- get_acs(geography = "zcta", variables = c('B06011_001'), geometry = TRUE, output = 'wide', shift_geo = FALSE)
 census_dat_zc %<>% dplyr::rename(lookupzip = GEOID, median_income = B06011_001E)
 
 plot_dat2 <- right_join(census_dat_zc, coll_dat2)
@@ -187,7 +187,7 @@ ggplot(plot_dat2, mapping = aes(x = median_income, y = mean_ed_spend)) + geom_po
 
 cces_zc <- right_join(census_dat_zc, cces2)
 cces_zc$median_income_10k <- cces_zc$median_income/10000
-model5 <- lm(ed_spend_num ~ median_income + I(median_income^2) + faminc_num + employ + gender + educ + race + child18, data = cces_zc)
+model5 <- lm(ed_spend_num ~ median_income_10k + I(median_income_10k^2) + faminc_num + employ + gender + educ + race + child18, data = cces_zc)
 
 # census$lookupzip <- str_remove(census$name, "zcta5")
 
