@@ -172,6 +172,10 @@ cat("true slope: ", coef(model1)['total_spending_10k'], '\nmean from sim 1: ', m
 cat("sample size in sim 1: ", mean(sample_sizes_sim1), "\nsample size in sim 2: ", mean(sample_sizes_sim2))
 cat("std error in sim 1: ", sd(slope_ests_sim1), "\nstd error in sim 2: ", sd(slope_ests_sim2))
 
+slopes <- data.frame(slope_ests_sim1 = slope_ests_sim1, slope_ests_sim2 = slope_ests_sim2)
+hist_sim1 <- ggplot(slopes, mapping = aes(x = slope_ests_sim1)) + geom_histogram(color = "black", fill = "peachpuff4")
+hist_sim2 <- ggplot(slopes, mapping = aes(x = slope_ests_sim2)) + geom_histogram(color = "black", fill = "skyblue2") 
+grid.arrange(hist_sim1, hist_sim2, nrow = 2)
 
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 #### Item 5 ####
