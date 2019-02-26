@@ -145,7 +145,6 @@ R <- 10000
 #simulation 1
 slope_ests_sim1 <- rep(NA, R) # this is where we'll store our slope estimates after we calculate them
 sample_sizes_sim1 <- rep(NA, R)
-stderr_sim1 <- rep(NA, R)
 set.seed(exp(1)) # start a new random seed
 for(i in 1:R){
   sampled_rows_sim1 <- sample(nrow(cces2), size = 1000) # we'll take a new sample of rows
@@ -153,14 +152,12 @@ for(i in 1:R){
   sample_sizes_sim1[i] <- dim(sampled_data_sim1)[1]
   model_samp_sim1 <- lm(ed_spend_num ~ total_spending_10k, data = sampled_data_sim1) # fit the model again
   slope_ests_sim1[i] <- coef(model_samp_sim1)['total_spending_10k'] # store the estimated slope as the ith slope estimate
-  stderr_sim1[i] <- coef(summary(model_samp_sim1))['total_spending_10k', 'Std. Error']
   if(i%%100 == 0) print(i) # print i every 100 samples; useful to see how fast the code is running
 }
 
 #simulation 2
 slope_ests_sim2 <- rep(NA, R)
 sample_sizes_sim2 <- rep(NA, R)
-stderr_sim2 <- rep(NA, R)
 set.seed(exp(1))
 for(i in 1:R){
   sampled_states_sim2 <- sample(unique(cces2$state), size = 3)
@@ -168,13 +165,12 @@ for(i in 1:R){
   sample_sizes_sim2[i] <- dim(sampled_data_sim2)[1]
   model_samp_sim2 <- lm(ed_spend_num ~ total_spending_10k, data = sampled_data_sim2)
   slope_ests_sim2[i] <- coef(model_samp_sim2)['total_spending_10k']
-  stderr_sim2[i] <- coef(summary(model_samp_sim2))['total_spending_10k', 'Std. Error']
   if(i%%100 == 0) print(i)
 }
 
 cat("true slope: ", coef(model1)['total_spending_10k'], '\nmean from sim 1: ', mean(slope_ests_sim1), "\nmean from sim 2: ", mean(slope_ests_sim2))
 cat("sample size in sim 1: ", mean(sample_sizes_sim1), "\nsample size in sim 2: ", mean(sample_sizes_sim2))
-cat("std error in sim 1: ", mean(stderr_sim1), "\nstd error in sim 2: ", mean(stderr_sim2))
+cat("std error in sim 1: ", sd(slope_ests_sim1), "\nstd error in sim 2: ", sd(slope_ests_sim2))
 
 
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
