@@ -188,6 +188,7 @@ ggplot(plot_dat2, mapping = aes(x = median_income, y = mean_ed_spend)) + geom_po
 cces_zc <- right_join(census_dat_zc, cces2)
 cces_zc$median_income_10k <- cces_zc$median_income/10000
 model5 <- lm(ed_spend_num ~ median_income_10k + I(median_income_10k^2) + faminc_num + employ + gender + educ + race + child18, data = cces_zc)
+htmlreg(model5, "taxonomy_table_model5.html")
 
 # census$lookupzip <- str_remove(census$name, "zcta5")
 
