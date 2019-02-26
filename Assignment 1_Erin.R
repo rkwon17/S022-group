@@ -190,8 +190,6 @@ model5 <- lm(ed_spend_num ~ median_income + I(median_income^2) + faminc_num + em
 
 # census$lookupzip <- str_remove(census$name, "zcta5")
 
-#testing comments
-
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 #### Challenge Question ####
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
