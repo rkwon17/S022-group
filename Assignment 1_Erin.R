@@ -150,9 +150,9 @@ set.seed(exp(1)) # start a new random seed
 for(i in 1:R){
   sampled_rows_sim1 <- sample(nrow(cces2), size = 1000) # we'll take a new sample of rows
   sampled_data_sim1 <- cces2[sampled_rows_sim1, c('ed_spend_num', 'total_spending_10k')] # and take a new sample from the cces2
+  sample_sizes_sim1[i] <- dim(sampled_data_sim1)[1]
   model_samp_sim1 <- lm(ed_spend_num ~ total_spending_10k, data = sampled_data_sim1) # fit the model again
   slope_ests_sim1[i] <- coef(model_samp_sim1)['total_spending_10k'] # store the estimated slope as the ith slope estimate
-  sample_sizes_sim1[i] <- model_samp_sim1$df.residual
   stderr_sim1[i] <- coef(summary(model_samp_sim1))['total_spending_10k', 'Std. Error']
   if(i%%100 == 0) print(i) # print i every 100 samples; useful to see how fast the code is running
 }
@@ -165,9 +165,9 @@ set.seed(exp(1))
 for(i in 1:R){
   sampled_states_sim2 <- sample(unique(cces2$state), size = 3)
   sampled_data_sim2 <- cces2[cces2$state %in% sampled_states_sim2, c('ed_spend_num', 'total_spending_10k')]
+  sample_sizes_sim2[i] <- dim(sampled_data_sim2)[1]
   model_samp_sim2 <- lm(ed_spend_num ~ total_spending_10k, data = sampled_data_sim2)
   slope_ests_sim2[i] <- coef(model_samp_sim2)['total_spending_10k']
-  sample_sizes_sim2[i] <- model_samp_sim2$df.residual
   stderr_sim2[i] <- coef(summary(model_samp_sim2))['total_spending_10k', 'Std. Error']
   if(i%%100 == 0) print(i)
 }
@@ -199,5 +199,3 @@ model5 <- lm(ed_spend_num ~ median_income + faminc_num + employ + gender + educ 
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 #### Challenge Question ####
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
-
->>>>>>> 17bc44f55af0cca44db6238865f007df18a29d2c
