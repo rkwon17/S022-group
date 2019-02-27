@@ -344,6 +344,13 @@ setwd('c:/Users/Erin/Documents/Harvard/S022 Statistical Computing and Data Scien
 htmlreg(list(model1, model2, model3, model4), file = 'taxonomy_table.html')
 
 
+####### subset regressions to look at interactions ############
+demo_int <- lm(ed_spend_num ~faminc_num,data= subset(cces2,party =='Democratic Party')) 
+repub_int <- lm(ed_spend_num ~ faminc_num,data=subset(cces2,party='Republican Party')) 
+summary(demo_int)
+summary(repub_int)
+
+
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 #### Item 4 ####
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
